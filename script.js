@@ -2,6 +2,7 @@ const input = document.querySelector(".input-text");
 
 const inputValue = input.value.trim();
 const badRegexp = /(убийство|блять|сука|тварь|пошел нахуй|тупой)/i;
+//bad speack
 
 input.addEventListener("input", () => {
   if (badRegexp.test(inputValue)) {
