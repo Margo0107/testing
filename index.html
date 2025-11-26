@@ -3,13 +3,28 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="modal.css" />
     <title>Document</title>
   </head>
   <body>
-    <label for="message">введите текст </label>
-    <input class="input-text" type="text" name="message" />
-    <!-- input vessage -->
-    <small></small>
+    <button class="modal-btn-open">open modal</button>
+    <button class="modal-btn-open2">open modal</button>
+
+    <div class="modal">
+      <div class="modal-contant">
+        <div class="modal-header">
+          <span class="modal-close">❌</span>
+          <h2>modal header 1</h2>
+        </div>
+        <div class="modal-body">
+          <h2>some text in the modal body</h2>
+          <p>some modal text</p>
+        </div>
+        <div class="modal-footer">
+          <h2>modal footer</h2>
+        </div>
+      </div>
+    </div>
     <script src="script.js"></script>
   </body>
 </html>
