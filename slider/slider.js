@@ -3,11 +3,12 @@ const firstImg = sliderBox.querySelectorAll("img")[0];
 const arrowIcon = document.querySelectorAll(".wrapper i");
 
 //switching forward and backward
-let firstWitdth = firstImg.clientWidth + 20;
+let firstWitdth = firstImg.clientWidth + 14;
 
 arrowIcon.forEach((icon) => {
   icon.addEventListener("click", () => {
     sliderBox.scrollLeft += icon.id == "left" ? -firstWitdth : firstWitdth;
+    updatePage();
   });
 });
 
@@ -25,10 +26,12 @@ sliderBox.addEventListener("mousedown", (e) => {
 
 sliderBox.addEventListener("mouseleave", () => {
   isDown = false;
+  updatePage();
 });
 
 sliderBox.addEventListener("mouseup", () => {
   isDown = false;
+  updatePage();
 });
 
 sliderBox.addEventListener("mousemove", (e) => {
@@ -38,3 +41,4 @@ sliderBox.addEventListener("mousemove", (e) => {
   const walk = x - startX;
   sliderBox.scrollLeft = scrollLeft - walk;
 });
+
