@@ -3,7 +3,7 @@ const firstImg = sliderBox.querySelectorAll("img")[0];
 const arrowIcon = document.querySelectorAll(".wrapper i");
 
 //switching forward and backward
-let firstWidth = firstImg.clientWidth + 14;
+let firstWidth = firstImg.offsetWidth + 14;
 
 arrowIcon.forEach((icon) => {
   icon.addEventListener("click", () => {
