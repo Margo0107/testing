@@ -41,12 +41,11 @@ body {
   transition: transform 0.3s;
 }
 .slider2 img.big {
-  transform: scale(1.2);
+  transform: scale(1);
 }
 
 .slider2 img.small {
   transform: scale(0.8);
-  filter: blur(3.5px);
 }
 .wrapper2 i {
   position: absolute;
