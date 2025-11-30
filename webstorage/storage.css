@@ -1,0 +1,13 @@
+:root {
+  --bq-color-theme-dark: rgb(94, 82, 121);
+  --bq-color-theme-light: rgb(215, 198, 253);
+}
+
+body.dark {
+  background-color: var(--bq-color-theme-dark);
+}
+
+body {
+  background-color: var(--bq-color-theme-light); /* СВЕТЛАЯ ТЕМА ПО УМОЛЧАНИЮ */
+  transition: 0.3s;
+}
