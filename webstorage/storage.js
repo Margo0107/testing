@@ -19,10 +19,50 @@ let notes = JSON.parse(localStorage.getItem("notes")) || [];
 function render() {
   result.replaceChildren();
 
-  notes.forEach((item) => {
+  notes.forEach((item, index) => {
+    //new li
     const newLi = document.createElement("li");
     newLi.textContent = item;
+    newLi.draggable = true;
+
+    //create delete li
+    const btnDel = document.createElement("button");
+    btnDel.classList.add("btn-del");
+    btnDel.textContent = "delete";
+
+    //delete li
+    btnDel.addEventListener("click", () => {
+      notes.splice(index, 1);
+
+      localStorage.setItem("notes", JSON.stringify(notes));
+      render();
+    });
+
+    newLi.append(btnDel);
     result.append(newLi);
+    
+    //darg li
+    let draggedItem = null;
+    result.addEventListener("dragover", (event) => {
+      event.preventDefault();
+    });
+    result.addEventListener("drop", drop);
+
+    newLi.addEventListener("dragstart", dragStart);
+    newLi.addEventListener("dragend", dragend);
+
+    function dragStart() {
+      draggedItem = this;
+    }
+    function drop(event) {
+      event.preventDefault();
+      if (event.target.tagName === "LI") {
+        result.insertBefore(draggedItem, event.target);
+      }
+    }
+    function dragend() {
+      draggedItem = null;
+    }
   });
 }
 render();

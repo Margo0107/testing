@@ -11,8 +11,6 @@ arrowIcon.forEach((icon) => {
   });
 });
 
-
-
 let images = slider2.querySelectorAll("img");
 
 const firstImg = images[0];
