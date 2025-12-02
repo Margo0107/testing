@@ -8,71 +8,75 @@ button.addEventListener("click", () => {
 if (localStorage.getItem("theme") === "dark") {
   document.body.classList.add("dark");
 }
-//todo
 
-const input = document.querySelector(".input-text");
-const btnSave = document.querySelector(".save");
-const result = document.querySelector(".result");
+// //todo
+const input = document.querySelector(".wish-input");
+const addBtn = document.querySelector(".add-wish");
+const list = document.querySelector(".wish-list");
 
-let notes = JSON.parse(localStorage.getItem("notes")) || [];
+let wishes = JSON.parse(localStorage.getItem("wishes")) || [];
+let editId = null;
 
 function render() {
-  result.replaceChildren();
+  list.replaceChildren();
 
-  notes.forEach((item, index) => {
-    //new li
+  wishes.forEach((item, index) => {
     const newLi = document.createElement("li");
-    newLi.textContent = item;
-    newLi.draggable = true;
+    //id-li
+    newLi.setAttribute("data-uuid", item.id);
+    //checkbox true/false
+    const checkBox = document.createElement("input");
+    checkBox.type = "checkbox";
+    checkBox.checked = item.done;
+    //text li
+    const text = document.createElement("span");
+    text.textContent = item.text;
+    text.style.textDecoration = item.done ? "none" : "line-through";
 
-    //create delete li
-    const btnDel = document.createElement("button");
-    btnDel.classList.add("btn-del");
-    btnDel.textContent = "delete";
+    checkBox.addEventListener("change", () => {
+      item.done = checkBox.checked;
 
-    //delete li
-    btnDel.addEventListener("click", () => {
-      notes.splice(index, 1);
+      text.style.textDecoration = item.done ? "none" : "line-through";
+      localStorage.setItem("wishes", JSON.stringify(wishes));
+    });
+    //edit
+    const editButton = document.createElement("button");
+    editButton.textContent = "edit";
 
-      localStorage.setItem("notes", JSON.stringify(notes));
+    editButton.addEventListener("click", () => {
+      input.value = item.text;
+      editId = item.id;
+      input.focus();
+    });
+    //delete
+    const btnDelete = document.createElement("button");
+    btnDelete.textContent = "delete";
+    btnDelete.addEventListener("click", () => {
+      wishes.splice(index, 1);
+
+      localStorage.setItem("wishes", JSON.stringify(wishes));
       render();
     });
 
-    newLi.append(btnDel);
-    result.append(newLi);
-    
-    //darg li
-    let draggedItem = null;
-    result.addEventListener("dragover", (event) => {
-      event.preventDefault();
-    });
-    result.addEventListener("drop", drop);
-
-    newLi.addEventListener("dragstart", dragStart);
-    newLi.addEventListener("dragend", dragend);
-
-    function dragStart() {
-      draggedItem = this;
-    }
-    function drop(event) {
-      event.preventDefault();
-      if (event.target.tagName === "LI") {
-        result.insertBefore(draggedItem, event.target);
-      }
-    }
-    function dragend() {
-      draggedItem = null;
-    }
+    newLi.append(checkBox, text, editButton, btnDelete);
+    list.append(newLi);
   });
 }
 render();
 
-btnSave.addEventListener("click", () => {
+addBtn.addEventListener("click", () => {
   const text = input.value.trim();
+  const uuid = Date.now();
   if (!text) return;
 
-  notes.push(text);
-  localStorage.setItem("notes", JSON.stringify(notes));
+  if (editId !== null) {
+    const found = wishes.find((item) => item.id === editId);
+    found.text = text;
+    editId = null;
+  } else {
+    wishes.push({ text: text, done: false, id: uuid });
+  }
+  localStorage.setItem("wishes", JSON.stringify(wishes));
 
   input.value = "";
   render();
