@@ -72,9 +72,11 @@ addBtn.addEventListener("click", () => {
   if (editId !== null) {
     const found = wishes.find((item) => item.id === editId);
     found.text = text;
+    wishes.sort((a, b) => a.text.localeCompare(b.text));
     editId = null;
   } else {
     wishes.push({ text: text, done: false, id: uuid });
+    wishes.sort((a, b) => a.text.localeCompare(b.text));
   }
   localStorage.setItem("wishes", JSON.stringify(wishes));
 
