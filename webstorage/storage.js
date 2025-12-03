@@ -13,6 +13,7 @@ if (localStorage.getItem("theme") === "dark") {
 const input = document.querySelector(".wish-input");
 const addBtn = document.querySelector(".add-wish");
 const list = document.querySelector(".wish-list");
+const btnClear = document.querySelector(".btn-clear-wish");
 
 let wishes = JSON.parse(localStorage.getItem("wishes")) || [];
 let editId = null;
@@ -63,6 +64,12 @@ function render() {
   });
 }
 render();
+
+btnClear.addEventListener("click", () => {
+  localStorage.removeItem("wishes");
+  wishes = [];
+  render();
+});
 
 addBtn.addEventListener("click", () => {
   const text = input.value.trim();
