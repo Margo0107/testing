@@ -29,4 +29,5 @@ const root = document.querySelector(".root");
 const p1 = new Product("img/p1.jpg", 235, "Air Zoom Alphafly", "Nike");
 const p2 = new Product("img/p2.jpg", 250, "Air Zoom Alphafly", "abibas");
 const p3 = new Product("img/p3.jpg", 250, "Air Zoom Alphafly", "abibas");
-root.append(p1.render(), p2.render(), p3.render());
+const p4 = new Product("img/p4.jpg", 280, "Air Zoom Alphafly", "abibas");
+root.append(p1.render(), p2.render(), p3.render(), p4.render());
