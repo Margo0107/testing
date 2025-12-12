@@ -1,21 +1,23 @@
 * {
   box-sizing: border-box;
 }
-
 body {
+  background-color: rgb(167, 169, 172);
+}
+body .root {
   font-family: Arial, Helvetica, sans-serif;
   margin: 60px auto;
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: rgb(167, 169, 172);
   color: rgb(62, 63, 66);
 }
 
 .root {
+  max-width: 1220px;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
+  flex-wrap: wrap;
   gap: 25px;
 }
 .card {
@@ -26,6 +28,7 @@ body {
   border-radius: 13px;
   gap: 10px;
   box-shadow: 0px 1px 10px 1px #6e6e77;
+  position: relative;
 }
 img {
   width: 260px;
@@ -40,4 +43,10 @@ p {
 }
 p {
   font-weight: 600;
+}
+i {
+  position: absolute;
+  bottom: 14px;
+  right: 13px;
+  color: rgb(190, 8, 63);
 }

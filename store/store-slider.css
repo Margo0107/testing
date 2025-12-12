@@ -1,0 +1,12 @@
+.slider {
+  max-width: 1220px;
+  display: flex;
+  scroll-behavior: smooth;
+  background-color: rgb(142, 194, 236);
+  margin: 0 auto 50px;
+  padding: 10px;
+}
+.card-slider {
+  margin-left: 14px;
+}
+
