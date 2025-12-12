@@ -13,9 +13,11 @@ body {
 }
 
 .root {
+  max-width: 1220px;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  /* align-items: center; */
+  justify-content: flex-start;
+  flex-wrap: wrap;
   gap: 25px;
 }
 .card {
