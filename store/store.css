@@ -3,9 +3,9 @@
 }
 body {
   background-color: rgb(167, 169, 172);
+  font-family: Arial, Helvetica, sans-serif;
 }
 body .root {
-  font-family: Arial, Helvetica, sans-serif;
   margin: 60px auto;
   display: flex;
   align-items: center;
