@@ -1,7 +1,33 @@
 function Shoes(img, title, price) {
   this.img = img;
-  this.title = title;
-  this.price = price;
+
+  let _title = title;
+  let _price = price;
+
+  this.titleEl = null;
+  this.priceEl = null;
+
+  this.getTitle = function () {
+    return _title;
+  };
+  this.setTitle = function (newTitle) {
+    _title = newTitle;
+
+    if (this.titleEl) {
+      this.titleEl.textContent = newTitle;
+    }
+  };
+  this.getPrice = function () {
+    return _price;
+  };
+  this.setPrice = function (newPrice) {
+    if (newPrice > 0) {
+      _price = newPrice;
+    }
+    if (this.priceEl) {
+      this.priceEl.textContent = `$ ${newPrice}`;
+    }
+  };
 }
 
 Shoes.prototype.render = function () {
@@ -10,21 +36,26 @@ Shoes.prototype.render = function () {
 
   const imgShoes = document.createElement("img");
   imgShoes.src = this.img;
-  imgShoes.alt = this.title;
+  imgShoes.alt = this.getTitle();
 
   const h2Shoes = document.createElement("h2");
-  h2Shoes.textContent = this.title;
+  h2Shoes.textContent = this.getTitle();
   h2Shoes.classList.add("card-title");
 
   const spanShoes = document.createElement("span");
-  spanShoes.textContent = `$ ${this.price}`;
+  spanShoes.textContent = `$ ${this.getPrice()}`;
   spanShoes.classList.add("card-price");
+
+  this.titleEl = h2Shoes;
+  this.priceEl = spanShoes;
 
   cardSlider.append(imgShoes, h2Shoes, spanShoes);
   return cardSlider;
 };
 
 const slider = document.querySelector(".slider");
+const trackWrapper = document.createElement("div");
+trackWrapper.classList.add("track-wrapper");
 const track = document.createElement("div");
 track.classList.add("track");
 
@@ -34,7 +65,8 @@ arrowLeft.classList.add("fa-solid", "fa-arrow-left", "left");
 const arrowRight = document.createElement("i");
 arrowRight.classList.add("fa-solid", "fa-arrow-right", "right");
 
-slider.append(arrowLeft, track, arrowRight);
+trackWrapper.append(track);
+slider.append(arrowLeft, trackWrapper, arrowRight);
 
 const c1 = new Shoes(
   "img-slider/c1.avif",
@@ -98,3 +130,9 @@ arrowRight.addEventListener("click", () => {
   track.scrollLeft += cartWidth + gap;
   console.log("click right");
 });
+
+//  c1.setTitle("yepi");
+//    console.log(c1.getTitle());
+
+//   c1.setPrice("99");
+// console.log(c1.getPrice());
