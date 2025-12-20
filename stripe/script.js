@@ -1,60 +1,67 @@
-const btn = document.querySelector(".notify-btn");
-
-btn.addEventListener("click", () => {
-  const types = [SuccesNotify, ErrorNotify, WarningNotify];
-  const randomType = types[Math.floor(Math.random() * types.length)];
-  new randomType("сообщение" + Notifycation.count).render();
-  console.log("сщщбщения:", Notifycation.count);
+const btnClickNotify = document.querySelector(".notify-btn");
+let success = true;
+btnClickNotify.addEventListener("click", () => {
+  if (success) {
+    new SuccessNotify("сообщение пришло :)").render();
+    console.log("click 1");
+  } else {
+    new ErrorNotify("Произошла ошибка :(").render();
+    console.log("click 2");
+  }
+  success = !success;
 });
+
 class Notifycation {
-  static count = 0;
+  static audioSucces = new Audio("audio/notify.mp3");
+  static audioError = new Audio("audio/error.mp3");
+  static settings = {
+    vibrate: true,
+    sound: true,
+  };
+
   #text;
-  #id;
   constructor(text) {
     this.#text = text;
-    this.#id = ++Notifycation.count;
   }
-  //render
+
   render() {
     const container = document.querySelector(".notify-container");
+
     this.element = document.createElement("div");
-    this.element.classList.add("notification");
+    this.element.classList.add("notifycation");
     this.element.textContent = this.#text;
+    if (Notifycation.settings.vibrate && "vibrate" in navigator) {
+      navigator.vibrate(200);
+    }
+    if (Notifycation.settings.sound) {
+      Notifycation.audioSucces.play();
+    }
 
     container.append(this.element);
-    setTimeout(() => {
-      this.remove();
-    }, 3000);
+    // setTimeout(() => {
+    //   this.remove();
+    // }, 3000);
   }
-  //remove
+
   remove() {
     if (!this.element) return;
-
     this.element.classList.add("hide");
     setTimeout(() => {
       this.element.remove();
     }, 300);
   }
 }
-class SuccesNotify extends Notifycation {
-  constructor(text) {
-    super(text);
-  }
+class SuccessNotify extends Notifycation {
   render() {
     super.render();
-    this.element.style.background = "#2ecc71";
+    Notifycation.audioSucces.play();
+    this.element.classList.add("success");
   }
 }
 class ErrorNotify extends Notifycation {
   render() {
     super.render();
-    this.element.style.background = "#e74c3c";
-  }
-}
-class WarningNotify extends Notifycation {
-  render() {
-    super.render();
-    this.element.style.background = "#f1c40f";
-    this.element.style.color = "#222";
+    Notifycation.audioError.play();
+    this.element.classList.add("error");
   }
 }
