@@ -3,10 +3,44 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="node_modules/bootstrap/dist/css/bootstrap.min.css"
+    />
     <title>Document</title>
   </head>
   <body>
-    <button class="btn">click</button>
+    <!-- <p>таймер видлику</p>
+    <span class="timer">1:25</span>
+    <p class="num">0</p>
+    <button class="go-btn">go</button>
+
+    <p class="time"></p>
+    <button class="run">run</button>
+    <button class="stop">stop</button>
+    <br />
+    <span class="timer2">01:25</span>
+    <button class="go-btn2">go</button>
+    <button class="stop-btn2">stop</button> -->
+
+    <div
+      class="container-sm p-3 d-flex flex-column gap-2 text-bg-primary align-items-start border-bottom border-3 border-white wither"
+    ></div>
+
+    <div class="input-group mt-3 container-sm">
+      <input
+        class="form-control inpt-todo"
+        type="text"
+        placeholder="напиши что хочешь"
+      />
+      <button class="btn btn-outline-secondary btn-todo" type="button">
+        add
+      </button>
+
+      <ul class="todo"></ul>
+    </div>
+    <script src="node_modules/jquery/dist/jquery.js"></script>
+    <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="script.js"></script>
   </body>
 </html>
