@@ -1,0 +1,36 @@
+$bg-dark: rgb(18, 20, 20);
+$bg-light: rgb(248, 212, 232);
+$color: #edeeff;
+$border: #6c6fcc;
+$box-shadow: rgb(134, 147, 240);
+$grad-1: #18191a;
+$grad-2: #252741;
+$grad-3: #393b85;
+body {
+  background-color: $bg-dark;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.test {
+  margin: 10px 0;
+  width: 210px;
+  font-size: 25px;
+  padding: 10px;
+  cursor: pointer;
+  color: $color;
+
+  background: linear-gradient(90deg, $grad-1, $grad-2 55%, $grad-3);
+  border-radius: 26px;
+  border: 2px solid $border;
+
+  border-radius: 26px;
+  box-shadow: inset -5px 1px 12px 1px $box-shadow;
+
+  &.active {
+    box-shadow: inset -5px 1px 12px 1px #f8c4a1;
+    background: linear-gradient(90deg, #d35656, #ffb199);
+    border: 2px solid #e67871;
+  }
+}
