@@ -1,56 +1,49 @@
-import { url } from "./utils";
 import "../scss/style.scss";
 
-async function wait() {
-  try {
-    const response = await fetch(url);
-    const data = await response.json();
+const wrapperTree = document.createElement("div");
+wrapperTree.classList.add("wrapper-tree");
+document.body.append(wrapperTree);
+//CONTAINER TREE
+const treeContainer = document.createElement("div");
+treeContainer.classList.add("tree-container");
+//STAR
+const star = document.createElement("div");
+star.classList.add("star");
+//the tree itself
+const tree = document.createElement("div");
+tree.classList.add("tree");
+//layers container
+const layerContainer = document.createElement("div");
+layerContainer.classList.add("layer-tree");
 
-    const block = document.querySelector(".wither");
-    //     //data
-    const cityName = data.name;
-    const temp = Math.round(data.main.temp);
-    const icon = data.weather[0].icon;
-    const descripyion = data.weather[0].description;
-    const sensations = data.main.humidity;
+//layer generator
+function createLayerTree(level) {
+  const form = document.createElement("div");
+  form.classList.add("form-layer", `${level}`);
 
-    //     //elemets
-    const h2 = document.createElement("h2");
-    h2.textContent = cityName;
+  const layerLeft = document.createElement("div");
+  layerLeft.classList.add("layer-left");
+  //balls
+  const boll = document.createElement("div");
+  boll.classList.add("boll", `${level}`);
 
-    const p = document.createElement("p");
-    p.textContent = `${temp}°C`;
+  const layerRight = document.createElement("div");
+  layerRight.classList.add("layer-right");
 
-    const imgIcon = document.createElement("img");
-    imgIcon.src = `https://openweathermap.org/img/wn/${icon}@2x.png`;
-    imgIcon.style.width = "200px";
+  layerLeft.append(boll);
+  form.append(layerLeft, layerRight);
 
-    const textDesc = document.createElement("p");
-    textDesc.textContent = `${descripyion}`;
-
-    const text2 = document.createElement("p");
-    text2.textContent = `влажность ${sensations}`;
-
-    const btn = document.createElement("button");
-    btn.textContent = "click";
-    btn.classList.add("btn", "btn-dark");
-
-    block.append(h2, p, imgIcon, textDesc, text2, btn);
-
-    console.log(data);
-  } catch (error) {
-    console.error("error", error);
-  }
+  return form;
 }
-wait();
-
-const test = document.querySelector(".test");
-const origTest = test.textContent;
-
-test.addEventListener("click", () => {
-  test.classList.toggle("active");
-  test.classList.contains("active")
-    ? (test.textContent = "Clicked!")
-    : (test.textContent = origTest);
-});
-
+const layerCount = 5;
+for (let i = 1; i <= layerCount; i++) {
+  const layer = createLayerTree(i);
+  layerContainer.append(layer);
+}
+//steam
+const steam = document.createElement("div");
+steam.classList.add("stem");
+//add to markup
+wrapperTree.append(treeContainer);
+treeContainer.append(star, tree);
+tree.append(layerContainer, steam);
