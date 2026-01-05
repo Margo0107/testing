@@ -6,8 +6,6 @@
 // // }
 // // prinPrice(600, greet);
 
-const { error } = require("jquery");
-
 // // function seyHi() {
 // //   console.log("hi");
 // // }
