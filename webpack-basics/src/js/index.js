@@ -19,16 +19,16 @@ layerContainer.classList.add("layer-tree");
 //layer generator
 function createLayerTree(level) {
   const form = document.createElement("div");
-  form.classList.add("form-layer", `${level}`);
+  form.classList.add(`form-layer-${level}`);
 
   const layerLeft = document.createElement("div");
-  layerLeft.classList.add("layer-left");
+  layerLeft.classList.add(`layer-left-${level}`);
   //balls
   const boll = document.createElement("div");
   boll.classList.add("boll", `${level}`);
 
   const layerRight = document.createElement("div");
-  layerRight.classList.add("layer-right");
+  layerRight.classList.add(`layer-right-${level}`);
 
   layerLeft.append(boll);
   form.append(layerLeft, layerRight);
