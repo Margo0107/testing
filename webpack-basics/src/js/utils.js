@@ -17,7 +17,7 @@ function createStars() {
     let x = Math.random() * window.innerWidth;
     stars.style.left = `${x}px`;
 
-    const fallingSpeed = Math.random() * 0.3 + 0.7;
+    const fallingSpeed = Math.random() * 0.1 + 0.4;
 
     const animate = () => {
       y += fallingSpeed;
@@ -25,7 +25,7 @@ function createStars() {
       if (y > window.innerHeight) y = -10;
       requestAnimationFrame(animate);
     };
-    animate()
+    animate();
 
     starContsiner.append(stars);
   }
