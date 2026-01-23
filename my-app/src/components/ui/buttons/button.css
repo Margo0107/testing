@@ -1,0 +1,9 @@
+.castom-button {
+  color: aliceblue;
+  background-color: rgb(41, 40, 40);
+  font-size: 18px;
+  padding: 8px 18px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+}

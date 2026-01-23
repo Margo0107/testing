@@ -1,0 +1,9 @@
+.castom-input {
+  font-size: 18px;
+  color: #000000b3;
+  border: 1px solid #84878e;
+  background-color: transparent;
+  padding: 7px 20px;
+  border-radius: 10px;
+  outline: none;
+}
