@@ -5,8 +5,11 @@ import AddTasks from "./AddTasks";
 import SearchTasks from "./SearchTasks";
 
 const Todos = () => {
+  //State with all tasks
   const [tasks, setTask] = useState([]);
+  //new text from the add field
   const [newTask, setNewTask] = useState("");
+  //text from the search field
   const [searchValue, setSearchValue] = useState("");
 
   const addNewTask = () => {
@@ -14,14 +17,16 @@ const Todos = () => {
     setTask([...tasks, { id: Date.now(), text: newTask }]);
     setNewTask("");
   };
-
+  // Tasks that match the search query
   const found = tasks.filter((task) =>
     task.text.toLocaleLowerCase().includes(searchValue.toLocaleLowerCase()),
   );
+  //Tasks that do NOT match the search query
   const unfound = tasks.filter(
     (task) =>
       !task.text.toLocaleLowerCase().includes(searchValue.toLocaleLowerCase()),
   );
+  //Remove task by id
   const deleteTasks = (id) => {
     setTask(tasks.filter((task) => task.id !== id));
   };
@@ -46,6 +51,7 @@ const Todos = () => {
           tasks.length === 0 ? (
             <h3 className="nothing-task">There's nothing here yet</h3>
           ) : (
+            // Add a new task to the list if the search field is empty and if the task is not equal to 0
             tasks.map((task) => (
               <div key={task.id} className="tasks">
                 {task.text}
@@ -59,6 +65,7 @@ const Todos = () => {
           )
         ) : (
           <>
+            {/* output of search tasks */}
             {found.map((task) => (
               <div key={task.id} className="tasks task-found">
                 {task.text}
