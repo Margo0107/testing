@@ -11,7 +11,7 @@ const Footer = () => {
         </li>
         <li>
           {" "}
-          email:<Link href="mailto:@kjdjdjdj.com>">mailto:@kjdjdjdj.com</Link>
+          email:<Link href="mailto:@kjdjdjdj.com>">test@gmail.com</Link>
         </li>
         <li>
           {" "}

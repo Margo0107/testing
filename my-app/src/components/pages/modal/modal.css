@@ -1,0 +1,41 @@
+.wrapper-modal {
+  height: 80vh;
+}
+.modal {
+  margin: 0 auto;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  width: 100%;
+  height: 100%;
+}
+.modal-dialog {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+}
+.modal-header {
+  border-bottom: 1px solid #000;
+}
+.modal-header,
+.modal-body {
+  padding: 10px 0;
+  margin-bottom: 12px;
+}
+.icon-close-modal {
+  position: absolute;
+  top: 10px;
+  right: 14px;
+  cursor: pointer;
+}
+.offer-open-row {
+  margin: 10px 0;
+}
+.title-open-modal {
+  margin: 0 10px;
+}

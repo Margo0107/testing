@@ -1,6 +1,6 @@
 import { IoIosClose } from "react-icons/io";
 import "./todo.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import AddTasks from "./AddTasks";
 import SearchTasks from "./SearchTasks";
 
@@ -17,6 +17,20 @@ const Todos = () => {
     setTask([...tasks, { id: Date.now(), text: newTask }]);
     setNewTask("");
   };
+  // Saving all recorded tasks to localStorage
+  useEffect(() => {
+    const savedTask = localStorage.getItem("tasks");
+    if (savedTask) {
+      setTask(JSON.parse(savedTask));
+    }
+  }, []);
+
+  useEffect(() => {
+    if (tasks.length > 0) {
+      localStorage.setItem("tasks", JSON.stringify(tasks));
+    }
+  }, [tasks]);
+
   // Tasks that match the search query
   const found = tasks.filter((task) =>
     task.text.toLocaleLowerCase().includes(searchValue.toLocaleLowerCase()),

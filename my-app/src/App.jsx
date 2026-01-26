@@ -7,6 +7,8 @@ import { useEffect, useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Todos from "./components/pages/todos/Todos";
 import NotFound from "./components/NotFount/NotFound";
+import LoginForm from "./components/pages/form/LoginForm";
+import Modal from "./components/pages/modal/Modal";
 
 const App = () => {
   const [theme, setTheme] = useState(themes.orange);
@@ -26,8 +28,8 @@ const App = () => {
               <Route path="*" element={<NotFound />} />
               <Route path="/" element={<Main />} />
               <Route path="/todos" element={<Todos />} />
-              <Route path="/form" />
-              <Route path="/modal" />
+              <Route path="/form" element={<LoginForm />} />
+              <Route path="/modal" element={<Modal />} />
             </Routes>
           </main>
           <Footer />
