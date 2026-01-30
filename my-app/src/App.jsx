@@ -9,6 +9,7 @@ import Todos from "./components/pages/todos/Todos";
 import NotFound from "./components/NotFount/NotFound";
 import LoginForm from "./components/pages/form/LoginForm";
 import Modal from "./components/pages/modal/Modal";
+import Post from "./components/pages/post/Post";
 
 const App = () => {
   const [theme, setTheme] = useState(themes.orange);
@@ -30,6 +31,7 @@ const App = () => {
               <Route path="/todos" element={<Todos />} />
               <Route path="/form" element={<LoginForm />} />
               <Route path="/modal" element={<Modal />} />
+              <Route path="/post" element={<Post />} />
             </Routes>
           </main>
           <Footer />

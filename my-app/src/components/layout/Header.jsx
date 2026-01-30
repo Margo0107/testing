@@ -18,6 +18,9 @@ const Header = () => {
         <li>
           <Link href="/modal">modal</Link>
         </li>
+        <li>
+          <Link href="/post">post</Link>
+        </li>
       </ul>
       <ChangeButton />
     </header>
