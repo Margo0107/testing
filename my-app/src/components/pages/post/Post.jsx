@@ -1,23 +1,18 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
+
 import "./post.css";
 import CastomButton from "../../ui/buttons/CastomButton";
-import PostService from "../../../API/PostService";
+import Loader from "../../ui/Loader/Loader";
+
+import { usePagination } from "../../../hooks/usePagination";
+import { usePosts } from "../../../hooks/usePosts";
 
 const Post = () => {
-  const [posts, setPosts] = useState([]);
-  //   const [rurrentPage, setCurrentPage] = useState(0);
-  const [postsLoading, setPostsLoading] = useState(false);
+  const [limit] = useState(10);
+  const [page, setPage] = useState(1);
 
-  useEffect(() => {
-    fetchPost();
-  }, []);
-
-  async function fetchPost() {
-    setPostsLoading(true);
-    const posts = await PostService.getAll();
-    setPosts(posts);
-    setPostsLoading(false);
-  }
+  const { posts, totalPages, postsLoading, setPosts } = usePosts(limit, page);
+  const countPage = usePagination(totalPages);
 
   const deletePost = (id) => {
     setPosts(posts.filter((item) => item.id !== id));
@@ -26,21 +21,34 @@ const Post = () => {
   return (
     <div className="post-wrapper">
       {postsLoading ? (
-        <div className="loader"></div>
+        <Loader />
       ) : (
-        posts.map((item) => (
-          <div className="post-container" key={item.id}>
-            <span>{item.id}.</span>
-            <h3>{item.title}</h3>
-            <p className="title-body-post">{item.body}</p>
-            <CastomButton
-              className="btn-delete-post"
-              onClick={() => deletePost(item.id)}
-            >
-              delete
-            </CastomButton>
+        <>
+          {posts.map((item) => (
+            <div className="post-container" key={item.id}>
+              <span>{item.id}.</span>
+              <h3>{item.title}</h3>
+              <p className="title-body-post">{item.body}</p>
+              <CastomButton
+                className="btn-delete-post"
+                onClick={() => deletePost(item.id)}
+              >
+                delete
+              </CastomButton>
+            </div>
+          ))}
+          <div className="page-wrapper">
+            {countPage.map((p) => (
+              <span
+                key={p}
+                className={p === page ? "page page-active" : "page"}
+                onClick={() => setPage(p)}
+              >
+                {p}
+              </span>
+            ))}
           </div>
-        ))
+        </>
       )}
     </div>
   );

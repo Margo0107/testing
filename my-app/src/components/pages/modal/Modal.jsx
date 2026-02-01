@@ -3,6 +3,7 @@ import CastomButton from "../../ui/buttons/CastomButton";
 import ModalBody from "./ModalBody";
 import { useContext, useState } from "react";
 import { ThemeContext } from "../../theme/themeContext";
+
 const Modal = () => {
   const { theme } = useContext(ThemeContext);
 
