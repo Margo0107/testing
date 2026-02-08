@@ -10,6 +10,8 @@ import NotFound from "./components/NotFount/NotFound";
 import LoginForm from "./components/pages/form/LoginForm";
 import Modal from "./components/pages/modal/Modal";
 import Post from "./components/pages/post/Post";
+import Shop from "./components/pages/shop/Shop";
+
 
 const App = () => {
   const [theme, setTheme] = useState(themes.orange);
@@ -32,6 +34,7 @@ const App = () => {
               <Route path="/form" element={<LoginForm />} />
               <Route path="/modal" element={<Modal />} />
               <Route path="/post" element={<Post />} />
+              <Route path="/shop" element={<Shop />} />
             </Routes>
           </main>
           <Footer />

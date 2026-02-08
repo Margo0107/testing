@@ -21,6 +21,9 @@ const Header = () => {
         <li>
           <Link href="/post">post</Link>
         </li>
+        <li>
+          <Link href="/shop">shop</Link>
+        </li>
       </ul>
       <ChangeButton />
     </header>
