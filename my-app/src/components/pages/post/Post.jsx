@@ -6,6 +6,7 @@ import Loader from "../../ui/Loader/Loader";
 
 import { usePagination } from "../../../hooks/usePagination";
 import { usePosts } from "../../../hooks/usePosts";
+import { Link } from "react-router-dom";
 
 const Post = () => {
   const [limit] = useState(10);
@@ -27,7 +28,7 @@ const Post = () => {
           {posts.map((item) => (
             <div className="post-container" key={item.id}>
               <span>{item.id}.</span>
-              <h3>{item.title}</h3>
+              <Link to={`/post/${item.id}`}>{item.title}</Link>
               <p className="title-body-post">{item.body}</p>
               <CastomButton
                 className="btn-delete-post"

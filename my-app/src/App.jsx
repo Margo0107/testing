@@ -3,6 +3,7 @@ import Header from "./components/layout/Header";
 import Main from "./components/pages/main/Main";
 import "./styles/App.css";
 import { themes, ThemeContext } from "./components/theme/themeContext";
+import ErrorBoundary from "./components/errorBoundary";
 import { useEffect, useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Todos from "./components/pages/todos/Todos";
@@ -11,7 +12,7 @@ import LoginForm from "./components/pages/form/LoginForm";
 import Modal from "./components/pages/modal/Modal";
 import Post from "./components/pages/post/Post";
 import Shop from "./components/pages/shop/Shop";
-
+import SinglePage from "./components/pages/post/SinglePage";
 
 const App = () => {
   const [theme, setTheme] = useState(themes.orange);
@@ -24,21 +25,24 @@ const App = () => {
   return (
     <ThemeContext.Provider value={{ theme, setTheme }}>
       <BrowserRouter>
-        <div className="contant">
-          <Header />
-          <main className="main-contant">
-            <Routes>
-              <Route path="*" element={<NotFound />} />
-              <Route path="/" element={<Main />} />
-              <Route path="/todos" element={<Todos />} />
-              <Route path="/form" element={<LoginForm />} />
-              <Route path="/modal" element={<Modal />} />
-              <Route path="/post" element={<Post />} />
-              <Route path="/shop" element={<Shop />} />
-            </Routes>
-          </main>
-          <Footer />
-        </div>
+        <ErrorBoundary>
+          <div className="contant">
+            <Header />
+            <main className="main-contant">
+              <Routes>
+                <Route path="*" element={<NotFound />} />
+                <Route path="/" element={<Main />} />
+                <Route path="/todos" element={<Todos />} />
+                <Route path="/form" element={<LoginForm />} />
+                <Route path="/modal" element={<Modal />} />
+                <Route path="/post" element={<Post />} />
+                <Route path="/post/:id" element={<SinglePage />} />
+                <Route path="/shop" element={<Shop />} />
+              </Routes>
+            </main>
+            <Footer />
+          </div>
+        </ErrorBoundary>
       </BrowserRouter>
     </ThemeContext.Provider>
   );
